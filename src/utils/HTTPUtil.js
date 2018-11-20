@@ -23,13 +23,12 @@ HTTPUtil.get = function(url, params, headers={}) {
             headers: headers,
             credentials: 'include',
         }).then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                reject({status:response.status})
-            }
-        }).then((data) => {
-            resolve(data);
+            if(response.ok)
+                resolve(response.json());
+            else
+                reject("newLogin")
+        }).catch((e)=> {
+            alert("error:" + e);
         })
     })
 }
@@ -53,13 +52,13 @@ HTTPUtil.post = function(url, data, headers={}) {
             headers: headers,
             body:data,
             credentials: 'include',
-        }).then((response) =>
-            response.json()
-        ).then((data) => {
-            resolve(data);
+        }).then((response) => {
+            if(response.ok)
+                resolve(response.json());
+            else
+                reject("newLogin")
         }).catch((e)=> {
             alert("error:" + e);
-           // reject({status:-1});
         })
     })
 }

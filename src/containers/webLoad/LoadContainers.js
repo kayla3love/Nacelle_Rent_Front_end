@@ -6,8 +6,10 @@ import './LoadContainers.css'
 import {urlConfig} from '../../config/urlConfig'
 import HTTPUtil from '../../utils/HTTPUtil'
 import {Redirect} from 'react-router-dom'
+import {updateLoginStateDispatch} from "../../reducers/Reducer";
+import {connect} from "react-redux";
 
-export default class LoadContainers extends Component{
+class LoadContainers extends Component{
     constructor(){
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +18,6 @@ export default class LoadContainers extends Component{
         this.state = {
             webAdminId:'',
             webAdminPassword:'',
-            isTrue: false,
             currentClass: "success",
             currentRole:0,
             subTitle:"管理员登录",
@@ -28,10 +29,8 @@ export default class LoadContainers extends Component{
         if(webAdminId !== null){
             HTTPUtil.get(urlConfig.webLoadUrl,{webAdminId: webAdminId})
                 .then((data)=>{
-                    if(data.isLogin=== true){
-                        this.setState({
-                            isTrue: true,
-                        })
+                    if(data.hasOwnProperty("isLogin") && data.isLogin=== true){
+                        this.props.onUpdateLoginState(true)
                     }
                 })
         }
@@ -43,18 +42,21 @@ export default class LoadContainers extends Component{
     }
     handleSubmit(e){
         e.preventDefault();
+        localStorage.setItem("webAdminId",this.state.webAdminId);
         let currentData = {
             webAdminId: this.state.webAdminId,
             webAdminPassword: this.state.webAdminPassword,
         }
         HTTPUtil.post(urlConfig.webLoadUrl,JSON.stringify(currentData)).then((data)=>{
-            let isTrue = data.message === "true"
+            let isTrue = data.message === "true";
+            if(isTrue){
+                this.props.onUpdateLoginState(true)
+            }
             this.setState({
                 isTrue: isTrue,
                 currentClass: data==="success"?"success":"wrong",
                 webAdminPassword:'',
             });
-            localStorage.setItem("webAdminId",this.state.webAdminId);
         }).catch(e=>{
 
         })
@@ -70,7 +72,7 @@ export default class LoadContainers extends Component{
     }
 
     render(){
-        if(this.state.isTrue){
+        if(this.props.loginState){
             return(<Redirect to="/manager"/>)
         }else{
             return(
@@ -108,3 +110,16 @@ export default class LoadContainers extends Component{
         }
     }
 }
+const mapStateToProps = (state)=>{
+    return{
+        loginState: state.loginState
+    }
+}
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        onUpdateLoginState:(loginState)=>{
+            dispatch(updateLoginStateDispatch(loginState))
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(LoadContainers);

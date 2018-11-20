@@ -8,8 +8,6 @@ import {updateMenuDispatch} from "../../reducers/Reducer";
 import CreateProject from '../webContent_createProject/CreateProject'
 import CreateAdmin from '../webContent_createAdmin/CreateAdmin'
 import ProjectView from '../webContent_project/ProjectView'
-import {urlConfig} from "../../config/urlConfig";
-import HTTPUtil from "../../utils/HTTPUtil";
 import {Redirect} from 'react-router-dom';
 import MessageBox from  '../../components/MessageBox'
 
@@ -17,27 +15,26 @@ class Content extends Component{
     constructor(){
         super();
         this.handleClick = this.handleClick.bind(this);
-        this.state = {isLogin: true, messageShow:"closed"};
+        this.state = {messageShow:"closed"};
     }
     handleClick(){
         this.props.onUpdateMenu(false);
     }
     componentDidMount(){
-        let webAdminId = localStorage.getItem("webAdminId");
-        HTTPUtil.get(urlConfig.webLoadUrl,{webAdminId: webAdminId})
-            .then((data)=>{
-                if(!data.isLogin){
-                    this.setState({
-                        messageShow: "message_box"
-                    })
-                    setTimeout(()=>{
-                        this.setState({
-                            messageShow: "closed",
-                            isLogin: false
-                        })
-                    },1000)
-                }
-        })
+        // let webAdminId = localStorage.getItem("webAdminId");
+        // HTTPUtil.get(urlConfig.webLoadUrl,{webAdminId: webAdminId})
+        //     .then((data)=>{
+        //         if(!data.isLogin){
+        //             this.setState({
+        //                 messageShow: "message_box"
+        //             })
+        //             setTimeout(()=>{
+        //                 this.setState({
+        //                     messageShow: "closed",
+        //                 })
+        //             },1000)
+        //         }
+        // })
     }
     render(){
         let content;
@@ -53,7 +50,7 @@ class Content extends Component{
                 break;
             default: content=null
         }
-        if(!this.state.isLogin) {
+        if(!this.props.loginState) {
             return (<Redirect to="/"/>)
         }else{
             return(
@@ -71,20 +68,21 @@ class Content extends Component{
                     </div>
                 </div>
             )
-        }
+         }
     }
 }
 const mapStateToProps = (state)=>{
     return{
         accountOpen: state.accountOpen,
-        currentPage: state.currentPage
+        currentPage: state.currentPage,
+        loginState: state.loginState
     }
 }
 const mapDispatchToProps = (dispatch)=>{
     return{
         onUpdateMenu:(accountOpen)=>{
             dispatch(updateMenuDispatch(accountOpen))
-        },
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Content);

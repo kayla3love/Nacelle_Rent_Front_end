@@ -1,5 +1,6 @@
 #content{
     height: auto;
+    min-height: 800px;
     width: 100%;
     animation-name: fadeIn;
     animation-delay: 0s;
@@ -20,6 +21,7 @@
     background: #F2EDF3;
     flex:1;
     height: auto;
+    min-height: 800px;
     margin-top: 70px;
 }
 #content button{
