@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 .idea/misc.xml
 src/asserts/images/sparator_v.png
+src/config/contactConfig.js
+src/config/listConfig.js
+src/config/urlConfig.js
