@@ -1,0 +1,31 @@
+#content{
+    height: auto;
+    width: 100%;
+    animation-name: fadeIn;
+    animation-delay: 0s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+#main_content{
+    width: 100%;
+    display:flex;
+    z-index: 10;
+}
+#main{
+    background: #F2EDF3;
+    flex:1;
+    height: auto;
+    margin-top: 70px;
+}
+#content button{
+    background: linear-gradient(to right, #da8cff, #9a55ff);
+    color: white;
+    border:0;
+    cursor: pointer;
+    outline:none;
+}

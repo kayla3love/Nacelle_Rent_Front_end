@@ -1,0 +1,19 @@
+#sideBar{
+    margin-top: 90px;
+    z-index: 999;
+}
+#createProject{
+    margin: 10px 20px 10px 20px
+}
+#createProject_button:hover{
+    opacity: 0.8;
+    transition: opacity 0.5s linear;
+}
+#createProject_button{
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+    outline:none;
+    height: 40px;
+    border-radius: 5px;
+}

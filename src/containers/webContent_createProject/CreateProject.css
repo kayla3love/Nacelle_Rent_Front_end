@@ -1,0 +1,35 @@
+#createProject_box{
+    display: flex;
+    color: #666666;
+    border-bottom: #DCCEDF thin solid;
+    padding: 10px 0 10px 0;
+    width: 100%;
+}
+.createProject_form{
+    background-color: white;
+    flex:1;
+    padding: 20px;
+    margin: 10px;
+}
+.createProject_title{
+    color: #444444;
+    font-weight: bold;
+}
+.buttonGroup{
+    height: 30px;
+    padding: 5px 0 5px 0;
+    text-align: right;
+}
+.buttonGroup button{
+    height: 30px;
+    margin-left: 10px;
+    width: 80px;
+    border-radius: 5px;
+}
+#editor{
+    height: 300px;
+    width: 400px;
+}
+.UEditor{
+
+}

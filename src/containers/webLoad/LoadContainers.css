@@ -1,0 +1,115 @@
+.load_body{
+    height: 850px;
+    width: 100%;
+    background: url(../../resources/background.jpg) no-repeat center center fixed;
+    background-size: cover;
+    animation-name: fadeIn;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.register_container{
+    width: 550px;
+    margin-left:45%;
+    text-align: center;
+    padding-top: 12%;
+}
+.inner_container{
+    border: white solid thin;
+    background-color: white;
+}
+.inner_header{
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1,h2{
+    color: #555555;
+    font-weight: lighter;
+}
+.sub_title{
+    display: flex;
+}
+.sub_title h2{
+    flex-basis: 60%;
+}
+.sub_title img{
+    height: 20px;
+    margin-left: 10px;
+}
+.sub_title button{
+    background: white;
+    outline: none;
+    border: none;
+    color: #938C88
+}
+.sub_title button:hover{
+    color: #DE995E;
+}
+.third_title{
+    display: flex;
+    justify-content: space-between;
+}
+span{
+    display: inline-block;
+    flex:1;
+    margin: 0;
+}
+.success{
+    display: none;
+}
+.wrong{
+    display: inline-block;
+    text-align: right;
+    color:red;
+}
+.register_box{
+    width: 500px;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/*input相关*/
+.register_input{
+    width:490px;
+    height: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    border: #DDDDDD thin solid;
+    background-color: white;
+    padding : 5px;
+}
+.register_input img{
+    flex-basis: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+.register_input input{
+    height: 40px;
+    flex: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    border:none;
+    font-size: 18px;
+}
+input:focus{
+    outline:none
+}
+.register_box button{
+    height: 50px;
+    width: 502px;
+    font-size: 18px;
+    background-color: #DE995E;
+    color: white;
+    border: none;
+    outline:none;
+}

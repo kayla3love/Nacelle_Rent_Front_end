@@ -1,0 +1,23 @@
+.message_box img{
+    margin-left: 118px;
+    margin-top: 40px;
+}
+.message_box p{
+    text-align: center;
+}
+.message_box{
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    position: fixed;
+    top: 50%;
+    width: 300px;
+    height: 200px;
+    z-index: 1030;
+    border:none;
+    border-radius:20px;
+    box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+.closed{
+    display: none;
+}

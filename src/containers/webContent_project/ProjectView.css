@@ -1,0 +1,14 @@
+#projectView_box{
+    margin: 10px 20px 10px 20px;
+    color: #666666;
+    border-bottom: #DCCEDF thin solid;
+    padding: 10px 0 10px 0;
+}
+.projectView_table{
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+}
+#notFound{
+
+}
