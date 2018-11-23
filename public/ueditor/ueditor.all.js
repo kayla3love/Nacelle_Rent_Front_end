@@ -8076,7 +8076,7 @@ UE.Editor.defaultOptions = function(editor){
                             me.fireEvent('serverConfigLoaded');
                             me._serverConfigLoaded = true;
                         } catch (e) {
-                            showErrorMsg(me.getLang('loadconfigFormatError'));
+                            //showErrorMsg(me.getLang('loadconfigFormatError'));
                         }
                     },
                     'onerror':function(){
@@ -19724,6 +19724,20 @@ UE.plugins['video'] = function (){
         }
     };
 
+    UE.commands['diyimg'] = {
+        execCommand : function(){
+            const upload = async(e) => {
+
+            }
+            const fileInput = document.getElementById('diyimg');//获取dom上隐藏的一个input标签
+            fileInput.onchange = upload;
+            fileInput.click();//触发input标签实现文件上传
+            return true;
+        },
+        queryCommandState:function(){
+
+        }
+    }
     UE.commands["cleartablebackground"] = {
         queryCommandState: function () {
             var cells = getSelectedArr(this);
@@ -27695,7 +27709,7 @@ UE.ui = baidu.editor.ui = {};
         'blockquote', 'pasteplain', 'pagebreak',
         'selectall', 'print','horizontal', 'removeformat', 'time', 'date', 'unlink',
         'insertparagraphbeforetable', 'insertrow', 'insertcol', 'mergeright', 'mergedown', 'deleterow',
-        'deletecol', 'splittorows', 'splittocols', 'splittocells', 'mergecells', 'deletetable', 'drafts'];
+        'deletecol', 'splittorows', 'splittocols', 'splittocells', 'mergecells', 'deletetable', 'drafts','diyimg'];
 
     for (var i = 0, ci; ci = btnCmds[i++];) {
         ci = ci.toLowerCase();

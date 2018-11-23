@@ -16,16 +16,16 @@ export default class UEditor extends React.Component {
             }catch (e) {}
             let  uEditor = UE.getEditor(id, {
                 toolbars: [[
-                    'fullscreen','|', 'undo', 'redo', '|',
+                    'undo', 'redo', '|',
                     'bold', 'italic', 'underline','|','fontfamily', 'fontsize','forecolor', 'backcolor',
-                    '|','justifyleft', 'justifyright', 'justifycenter', 'justifyjustify'
+                    '|','justifyleft', 'justifyright', 'justifycenter', 'justifyjustify','|','diyimg'
                 ]],
-                autoSave: false,
+                enableAutoSave: false,
                 autoHeightEnabled: true,
                 autoFloatEnabled: false,
                 initialFrameWidth:this.props.width,
                 elementPathEnabled: false,
-            });
+             });
             this.setState({uEditor});
         }
         let ue = UE.getEditor(id);

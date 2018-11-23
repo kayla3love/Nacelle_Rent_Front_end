@@ -6,8 +6,9 @@ import './LoadContainers.css'
 import {urlConfig} from '../../config/urlConfig'
 import HTTPUtil from '../../utils/HTTPUtil'
 import {Redirect} from 'react-router-dom'
-import {updateLoginStateDispatch} from "../../reducers/Reducer";
+import {updateLoginStateDispatch,updateRegisterNumDispatch} from "../../reducers/Reducer";
 import {connect} from "react-redux";
+import estabConnectWithWS from '../../utils/WebSocketUtil'
 
 class LoadContainers extends Component{
     constructor(){
@@ -26,11 +27,14 @@ class LoadContainers extends Component{
     }
     componentDidMount(){
         let webAdminId = localStorage.getItem("webAdminId");
+        let currentData = {
+            userId: webAdminId,
+        }
         if(webAdminId !== null){
-            HTTPUtil.get(urlConfig.webLoadUrl,{webAdminId: webAdminId})
+            HTTPUtil.post(urlConfig.webLoadUrl,JSON.stringify(currentData))
                 .then((data)=>{
-                    if(data.hasOwnProperty("isLogin") && data.isLogin=== true){
-                        this.props.onUpdateLoginState(true)
+                    if(data.isLogin=== true){
+                        this.props.onUpdateLoginState(true);
                     }
                 })
         }
@@ -44,12 +48,14 @@ class LoadContainers extends Component{
         e.preventDefault();
         localStorage.setItem("webAdminId",this.state.webAdminId);
         let currentData = {
-            webAdminId: this.state.webAdminId,
-            webAdminPassword: this.state.webAdminPassword,
+            userId: this.state.webAdminId,
+            userPassword: this.state.webAdminPassword,
         }
         HTTPUtil.post(urlConfig.webLoadUrl,JSON.stringify(currentData)).then((data)=>{
-            let isTrue = data.message === "true";
+            let isTrue = data.isLogin === true;
             if(isTrue){
+                let sid = "superWebAdmin"
+                estabConnectWithWS(urlConfig.webSocketUrl + `/${sid}`,this.props.onUpdateRegisterNum);
                 this.props.onUpdateLoginState(true)
             }
             this.setState({
@@ -119,6 +125,9 @@ const mapDispatchToProps = (dispatch)=>{
     return{
         onUpdateLoginState:(loginState)=>{
             dispatch(updateLoginStateDispatch(loginState))
+        },
+        onUpdateRegisterNum:(registerNum)=>{
+            dispatch(updateRegisterNumDispatch(registerNum))
         }
     }
 }

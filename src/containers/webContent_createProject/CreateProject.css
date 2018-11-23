@@ -26,10 +26,15 @@
     width: 80px;
     border-radius: 5px;
 }
-#editor{
-    height: 300px;
-    width: 400px;
+#diyimg{
+    height: 1px;
+    width:1px;
+    display:inline-block;
+    visibility: hidden;
 }
-.UEditor{
-
+.contact_control{
+    display: flex;
+}
+.contact_control button{
+    margin: 16px 10px 16px 10px
 }

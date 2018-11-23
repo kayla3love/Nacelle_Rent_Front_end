@@ -10,7 +10,7 @@
     display:flex;
 }
 #logo{
-    flex-basis: 80%;
+    flex-basis: 76%;
     margin: 5px 0 5px 100px;
 }
 #logo img{
@@ -18,16 +18,29 @@
     width: 60px;
 }
 .topInfo{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
+    display: flex;
 }
-.topInfo span{
-    display: inline-block;
-    margin-left: 10px;
-    user-select:none;
+.topInfo_item{
+    display: flex;
+    margin-right: 20px;
 }
-#headImg{
+.redPoint{
+    position: relative;
+    right: 8px;
+    width:18px;
+    height:18px;
+    display:inline-block;
+    text-align:center;
+    font-size:0.1em;
+    color:#fff;
+    background:red;
+    border-radius: 50%;
+}
+#headImg, #alarmImg{
     height: 30px;
     width: 30px;
+    padding: 10px 0 10px 0;
 }

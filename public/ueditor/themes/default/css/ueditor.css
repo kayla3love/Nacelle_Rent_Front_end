@@ -1901,3 +1901,7 @@ div.edui-box {
 .edui-default  .edui-pastecontainer .edui-button  .edui-state-hover .edui-plaintxticon{
     background-position: -72px -34px;
 }
+/*自定义图片上传按钮 */
+.edui-default .edui-toolbar .edui-for-diyimg .edui-icon {
+    background-position: -380px 0px;
+}

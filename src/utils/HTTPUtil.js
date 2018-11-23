@@ -53,10 +53,9 @@ HTTPUtil.post = function(url, data, headers={}) {
             body:data,
             credentials: 'include',
         }).then((response) => {
-            if(response.ok)
+            if(response.ok) {
                 resolve(response.json());
-            else
-                reject("newLogin")
+            }
         }).catch((e)=> {
             alert("error:" + e);
         })

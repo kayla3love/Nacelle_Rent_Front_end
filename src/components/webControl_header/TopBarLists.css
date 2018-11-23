@@ -5,7 +5,7 @@
     border:none;
     border-radius:5px;
     box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.2);
-    width: 120px;
+    width: 150px;
     z-index: 1030;
     background-color: #fff;
     animation-name: dropdownAnimation;
