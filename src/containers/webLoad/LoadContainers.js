@@ -6,7 +6,8 @@ import './LoadContainers.css'
 import {urlConfig} from '../../config/urlConfig'
 import HTTPUtil from '../../utils/HTTPUtil'
 import {Redirect} from 'react-router-dom'
-import {updateLoginStateDispatch,updateRegisterNumDispatch} from "../../reducers/Reducer";
+import {updateLoginStateDispatch, updateRegisterArrayDispatch,
+    updateRegisterNumDispatch, initialWebSocketDispatch} from "../../reducers/Reducer";
 import {connect} from "react-redux";
 import estabConnectWithWS from '../../utils/WebSocketUtil'
 
@@ -53,9 +54,11 @@ class LoadContainers extends Component{
         }
         HTTPUtil.post(urlConfig.webLoadUrl,JSON.stringify(currentData)).then((data)=>{
             let isTrue = data.isLogin === true;
+            let {onUpdateRegisterNum, onUpdateRegisterArray, onInitialWebSocket} = this.props;
             if(isTrue){
                 let sid = "superWebAdmin"
-                estabConnectWithWS(urlConfig.webSocketUrl + `/${sid}`,this.props.onUpdateRegisterNum);
+                estabConnectWithWS(urlConfig.webSocketUrl + `/${sid}`,onUpdateRegisterNum,
+                    onUpdateRegisterArray, onInitialWebSocket);
                 this.props.onUpdateLoginState(true)
             }
             this.setState({
@@ -128,6 +131,12 @@ const mapDispatchToProps = (dispatch)=>{
         },
         onUpdateRegisterNum:(registerNum)=>{
             dispatch(updateRegisterNumDispatch(registerNum))
+        },
+        onUpdateRegisterArray:(registerArray)=>{
+            dispatch(updateRegisterArrayDispatch(registerArray));
+        },
+        onInitialWebSocket:(webSocket)=>{
+            dispatch(initialWebSocketDispatch(webSocket))
         }
     }
 }

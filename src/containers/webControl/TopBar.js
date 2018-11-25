@@ -5,7 +5,7 @@ import headUrl from '../../resources/head.png'
 import logoUrl from '../../resources/logo.png'
 import alarmUrl from '../../resources/alarm.png'
 import './TopBar.css'
-import {updateMenuDispatch, updateRegisterNumDispatch} from "../../reducers/Reducer";
+import {updateMenuDispatch, updateRegisterNumDispatch, updateRegisterArrayDispatch, updatePageDispatch} from "../../reducers/Reducer";
 import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
 import HTTPUtil from "../../utils/HTTPUtil";
@@ -16,12 +16,14 @@ class WebControl extends Component{
         super();
         this.state = {loginState:true}
         this.handleClick = this.handleClick.bind(this);
+        this.openRegisterCheck = this.openRegisterCheck.bind(this);
     }
     componentDidMount(){
         HTTPUtil.get(urlConfig.unCheckedNumUrl,{userId: localStorage.getItem("webAdminId")})
             .then((data)=>{
                 if(data.isAllowed === true){
-                    this.props.onUpdateRegisterNum(data.unChecked);
+                    this.props.onUpdateRegisterNum(data.unCheckedNum);
+                    this.props.onUpdateRegisterArray(data.unCheckedArray)
                 }
             })
     }
@@ -35,6 +37,9 @@ class WebControl extends Component{
                 loginState: false
             })
         }
+    }
+    openRegisterCheck(){
+        this.props.onUpdatePage("registerCheck");
     }
     render(){
         const {loginState, registerNum} = this.props;
@@ -51,7 +56,7 @@ class WebControl extends Component{
                             <img id="headImg" src={headUrl} alt="head"/>
                             <p>{localStorage.getItem("webAdminId")} {loginState ? "已登陆" : "未登录"}</p>
                         </div>
-                        <div className="topInfo_item">
+                        <div className="topInfo_item" onClick={this.openRegisterCheck}>
                             <img id="alarmImg" src={alarmUrl} alt="alarm"/>
                             <span className={registerNum > 0?"redPoint":"closed"}>{registerNum}</span>
                         </div>
@@ -76,6 +81,12 @@ const mapDispatchToProps = (dispatch)=>{
         },
         onUpdateRegisterNum:(registerNum)=>{
             dispatch(updateRegisterNumDispatch(registerNum))
+        },
+        onUpdateRegisterArray:(registerArray)=>{
+            dispatch(updateRegisterArrayDispatch(registerArray));
+        },
+        onUpdatePage:(currentPage)=>{
+            dispatch(updatePageDispatch(currentPage))
         }
     }
 }

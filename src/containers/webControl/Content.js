@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
-import TopBar from './TopBar'
-import SideBar from './SideBar'
 import './Content.css'
 import {connect} from 'react-redux'
 import Footer from '../../components/footer/Footer'
 import {updateMenuDispatch} from "../../reducers/Reducer";
+import TopBar from './TopBar'
+import SideBar from './SideBar'
 import CreateProject from '../webContent_createProject/CreateProject'
 import CreateAdmin from '../webContent_createAdmin/CreateAdmin'
 import ProjectView from '../webContent_project/ProjectView'
+import RegisterCheckList from '../webControl_registerCheck/RegisterCheck'
 import {Redirect} from 'react-router-dom';
 import MessageBox from  '../../components/MessageBox'
 
@@ -38,7 +39,8 @@ class Content extends Component{
     }
     render(){
         let content;
-        switch (this.props.currentPage) {
+        let {currentPage, registerArray} = this.props;
+        switch (currentPage) {
             case "createProject":
                 content = <CreateProject/>;
                 break;
@@ -47,6 +49,9 @@ class Content extends Component{
                 break;
             case "projectView":
                 content = <ProjectView/>
+                break;
+            case "registerCheck":
+                content = <RegisterCheckList registerCheckList={registerArray}/>
                 break;
             default: content=null
         }
@@ -75,7 +80,8 @@ const mapStateToProps = (state)=>{
     return{
         accountOpen: state.accountOpen,
         currentPage: state.currentPage,
-        loginState: state.loginState
+        loginState: state.loginState,
+        registerArray: state.registerArray
     }
 }
 const mapDispatchToProps = (dispatch)=>{

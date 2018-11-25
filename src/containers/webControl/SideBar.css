@@ -1,6 +1,11 @@
 #sideBar{
-    margin-top: 90px;
-    z-index: 999;
+    margin-top: 70px;
+    padding-top: 20px;
+    width:260px;
+    height:780px;
+    position: fixed;
+    z-index: 1030;
+    background-color: white;
 }
 #createProject{
     margin: 10px 20px 10px 20px

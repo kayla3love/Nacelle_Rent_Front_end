@@ -1,0 +1,26 @@
+.registerCheckItem{
+    width: 500px;
+    height: 200px;
+    border:none;
+    border-radius:20px;
+    box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    padding: 30px;
+    margin: 0 auto 30px auto;
+}
+.registerCheckInnerItem{
+    display: flex;
+    width: 250px;
+}
+.registerCheckInnerItem img{
+    width: 30px;
+    height: 30px;
+    margin: 10px 20px 10px 0;
+}
+.registerCheckInnerItem p{
+    flex:1;
+}
+.buttonGroup img{
+    width: 20px;
+    height: 20px;
+}

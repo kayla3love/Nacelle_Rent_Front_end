@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import './TableItem.css'
 import PropTypes from 'prop-types';
 
-export default class TableItem extends Component{
+    export default class TableItem extends Component{
     static propTypes={
         tableItem: PropTypes.object
     }

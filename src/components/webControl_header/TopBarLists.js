@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import TopBarItem from './TopBarItem'
 import './TopBarLists.css'
-import {updateLoginStateDispatch, updateMenuDispatch} from "../../reducers/Reducer";
+import {initialStateDispatch, updateMenuDispatch} from "../../reducers/Reducer";
 import {connect} from "react-redux";
 import HTTPUtil from "../../utils/HTTPUtil";
 import {urlConfig} from "../../config/urlConfig";
@@ -21,7 +21,7 @@ class TopBarLists extends Component{
                 .then((data) => {
                     if (data.hasOwnProperty("deleteCookieSuccess") && data.deleteCookieSuccess) {
                         localStorage.setItem("webAdminId",null)
-                        this.props.onUpdateLoginState(false);
+                        this.props.oninitialStateDispatch();
                     }
                 })
         }
@@ -48,8 +48,8 @@ const mapDispatchToProps = (dispatch)=>{
         onUpdateMenu:(accountOpen)=>{
             dispatch(updateMenuDispatch(accountOpen))
         },
-        onUpdateLoginState:(loginState)=>{
-            dispatch(updateLoginStateDispatch(loginState))
+        oninitialStateDispatch:()=>{
+            dispatch(initialStateDispatch())
         }
     }
 }

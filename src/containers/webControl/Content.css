@@ -23,6 +23,7 @@
     height: auto;
     min-height: 800px;
     margin-top: 70px;
+    margin-left: 260px;
 }
 #content button{
     background: linear-gradient(to right, #da8cff, #9a55ff);
